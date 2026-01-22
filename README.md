@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Healthcare Memory Agent](https://img.shields.io/badge/Healthcare-AI%20Platform-blue)
+![Caremate : Healthcare Memory Agent](https://img.shields.io/badge/Healthcare-AI%20Platform-blue)
 ![Qdrant](https://img.shields.io/badge/Qdrant-Vector%20Database-purple)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
@@ -20,7 +20,7 @@
 
 ## 🌟 Overview
 
-Healthcare Memory Agent is a revolutionary AI-powered chronic care management platform that combines **Qdrant vector database** with cutting-edge multimodal artificial intelligence. The platform enables semantic memory for patient conversations, multimodal health analysis (images, audio), evidence-based clinical decision support, and complete audit trail traceability for healthcare compliance.
+Caremate: Healthcare Memory Agent is a revolutionary AI-powered chronic care management platform that combines **Qdrant vector database** with cutting-edge multimodal artificial intelligence. The platform enables semantic memory for patient conversations, multimodal health analysis (images, audio), evidence-based clinical decision support, and complete audit trail traceability for healthcare compliance.
 <p align="center">
   <img src="https://github.com/Shine-5705/healthcare-memory-agent/blob/main/asset/WebUI.png" alt="CareMate UI Screenshot" width="700"/>
 </p>
@@ -453,7 +453,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```
 MIT License
 
-Copyright (c) 2026 Healthcare Memory Agent Team
+Copyright (c) 2026 Caremate Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
