@@ -46,7 +46,7 @@ const Notifications: React.FC = () => {
                           variant={
                             notification.type === 'appointment' ? 'primary' :
                             notification.type === 'medication' ? 'warning' :
-                            notification.type === 'message' ? 'accent' :
+                            notification.type === 'message' ? 'success' :
                             'secondary'
                           }
                           size="sm"

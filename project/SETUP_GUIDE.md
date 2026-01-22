@@ -1,349 +1,361 @@
 # 🚀 Healthcare Memory Agent - Complete Setup Guide
 
-**Version:** 1.0  
-**Last Updated:** January 2026  
-**Estimated Setup Time:** 15-20 minutes
+**Get up and running in under 10 minutes!**
 
 ---
 
 ## 📋 Table of Contents
 
-1. [System Requirements](#system-requirements)
-2. [Quick Start (5 Minutes)](#quick-start)
+1. [Prerequisites](#prerequisites)
+2. [Quick Start](#quick-start)
 3. [Detailed Installation](#detailed-installation)
 4. [API Keys Configuration](#api-keys-configuration)
 5. [Running the Application](#running-the-application)
-6. [Verifying Installation](#verifying-installation)
-7. [Common Issues & Solutions](#troubleshooting)
-8. [Optional: Qdrant Cloud Setup](#qdrant-cloud-optional)
+6. [Testing](#testing)
+7. [Troubleshooting](#troubleshooting)
+8. [Deployment](#deployment)
 
 ---
 
-## 🖥️ System Requirements
+## 🔧 Prerequisites
 
-### Minimum Requirements:
-- **Operating System:** Windows 10/11, macOS 10.15+, or Linux (Ubuntu 20.04+)
-- **Python:** 3.11 or higher
-- **Node.js:** 16.x or higher
-- **RAM:** 8 GB minimum (16 GB recommended for AI features)
-- **Storage:** 2 GB free space
-- **Internet:** Required for API calls and package installation
+Before you begin, ensure you have the following installed:
 
-### Supported Browsers:
-- Chrome 90+ (recommended)
-- Firefox 88+
-- Edge 90+
-- Safari 14+
+### Required Software
 
----
+| Software | Version | Download Link |
+|----------|---------|---------------|
+| **Node.js** | 18.x or higher | https://nodejs.org/ |
+| **Python** | 3.11 or higher | https://www.python.org/ |
+| **Git** | Latest | https://git-scm.com/ |
+| **npm** | 9.x or higher | Comes with Node.js |
+| **pip** | Latest | Comes with Python |
 
-## ⚡ Quick Start (5 Minutes)
-
-For experienced developers who want to get running immediately:
+### Verify Installations
 
 ```bash
-# 1. Clone repository
+# Check Node.js version
+node --version
+# Should show: v18.x.x or higher
+
+# Check Python version
+python --version
+# Should show: Python 3.11.x or higher
+
+# Check npm version
+npm --version
+# Should show: 9.x.x or higher
+
+# Check pip version
+pip --version
+# Should show: pip 23.x.x or higher
+```
+
+### API Keys Required
+
+You'll need accounts and API keys from these services:
+
+1. **Groq API** (AI Chat) - Free tier available
+   - Sign up: https://console.groq.com/
+   - Get your API key from dashboard
+
+2. **Google Gemini API** (Medical Analysis) - Free tier available
+   - Sign up: https://makersuite.google.com/app/apikey
+   - Create API key
+
+3. **AssemblyAI** (Speech Recognition) - Free trial available
+   - Sign up: https://www.assemblyai.com/
+   - Get API key from dashboard
+
+---
+
+## ⚡ Quick Start
+
+**For experienced developers who want to get running fast:**
+
+```bash
+# 1. Clone the repository
 git clone https://github.com/yourusername/healthcare-memory-agent.git
 cd healthcare-memory-agent/project
 
-# 2. Backend setup
+# 2. Create virtual environment
+python -m venv .venv
+
+# 3. Activate virtual environment
+# On Windows:
+.\.venv\Scripts\activate
+# On macOS/Linux:
+source .venv/bin/activate
+
+# 4. Install backend dependencies
 cd backend
 pip install -r requirements.txt
-cp .env.example .env
-# Edit .env with your API keys
-python app.py
 
-# 3. Frontend setup (new terminal)
+# 5. Create .env file with your API keys
+echo "GROQ_API_KEY=your_groq_key_here" > .env
+echo "GEMINI_API_KEY=your_gemini_key_here" >> .env
+echo "ASSEMBLYAI_API_KEY=your_assemblyai_key_here" >> .env
+
+# 6. Start backend (in backend directory)
+python app.py
+# Backend runs on http://localhost:5000
+
+# 7. In a NEW terminal, install frontend dependencies
 cd ..
 npm install
-npm run dev
 
-# 4. Open browser
-# Frontend: http://localhost:5173
-# Backend: http://localhost:5000
+# 8. Start frontend
+npm run dev
+# Frontend runs on http://localhost:5173
+
+# 9. Open browser and navigate to http://localhost:5173
 ```
 
-⚠️ **Important:** You need API keys for full functionality. See [API Keys Configuration](#api-keys-configuration).
+**Done! 🎉** The application should now be running.
 
 ---
 
 ## 📦 Detailed Installation
 
-### Step 1: Install Prerequisites
+### Step 1: Clone the Repository
 
-#### Python 3.11+
-
-**Windows:**
-1. Download from [python.org](https://www.python.org/downloads/)
-2. Run installer and **check "Add Python to PATH"**
-3. Verify: Open Command Prompt and type:
-   ```bash
-   python --version
-   ```
-   Should show: `Python 3.11.x` or higher
-
-**macOS:**
 ```bash
-# Using Homebrew
-brew install python@3.11
-
-# Verify
-python3 --version
-```
-
-**Linux (Ubuntu/Debian):**
-```bash
-sudo apt update
-sudo apt install python3.11 python3.11-venv python3-pip
-python3.11 --version
-```
-
-#### Node.js 16+
-
-**Windows:**
-1. Download from [nodejs.org](https://nodejs.org/)
-2. Run installer (LTS version recommended)
-3. Verify:
-   ```bash
-   node --version
-   npm --version
-   ```
-
-**macOS:**
-```bash
-brew install node
-node --version
-```
-
-**Linux:**
-```bash
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
-node --version
-```
-
-#### Git (Optional but Recommended)
-
-**Windows:** Download from [git-scm.com](https://git-scm.com/)  
-**macOS:** `brew install git`  
-**Linux:** `sudo apt install git`
-
----
-
-### Step 2: Download Project
-
-**Option A: Using Git (Recommended)**
-```bash
+# Using HTTPS
 git clone https://github.com/yourusername/healthcare-memory-agent.git
+
+# Or using SSH
+git clone git@github.com:yourusername/healthcare-memory-agent.git
+
+# Navigate to project directory
 cd healthcare-memory-agent/project
 ```
 
-**Option B: Download ZIP**
-1. Go to GitHub repository
-2. Click "Code" → "Download ZIP"
-3. Extract to desired location
-4. Open terminal in `healthcare-memory-agent/project` folder
+### Step 2: Backend Setup
 
----
+#### Create Python Virtual Environment
 
-### Step 3: Backend Setup
+**Why?** Isolates project dependencies from your system Python.
 
-#### 3.1 Navigate to Backend Directory
 ```bash
-cd backend
-```
-
-#### 3.2 Create Virtual Environment (Recommended)
-
-**Windows:**
-```bash
+# Create virtual environment
 python -m venv .venv
-.venv\Scripts\activate
-```
 
-**macOS/Linux:**
-```bash
-python3 -m venv .venv
+# Activate it
+# Windows PowerShell:
+.\.venv\Scripts\Activate.ps1
+
+# Windows CMD:
+.\.venv\Scripts\activate.bat
+
+# macOS/Linux:
 source .venv/bin/activate
+
+# You should see (.venv) in your terminal prompt
 ```
 
-You should see `(.venv)` in your terminal prompt.
-
-#### 3.3 Install Python Dependencies
+#### Install Backend Dependencies
 
 ```bash
-pip install --upgrade pip
+# Navigate to backend directory
+cd backend
+
+# Upgrade pip (recommended)
+python -m pip install --upgrade pip
+
+# Install all required packages
 pip install -r requirements.txt
+
+# This will install:
+# - Flask 2.3.3 (Web framework)
+# - Qdrant-client 1.7.0 (Vector database)
+# - Sentence-transformers 2.7.0 (Text embeddings)
+# - Transformers 4.36.0 (CLIP, Wav2Vec2)
+# - torch (PyTorch for ML models)
+# - librosa 0.10.1 (Audio processing)
+# - Pillow (Image processing)
+# - And more...
 ```
 
-**Expected packages (19 total):**
-- Flask 2.3.3 - Web framework
-- Flask-CORS 4.0.0 - Cross-origin support
-- qdrant-client 1.7.0 - Vector database
-- sentence-transformers 2.7.0 - Text embeddings
-- transformers 4.36.0 - AI models
-- librosa 0.10.1 - Audio processing
-- torch, torchvision - Deep learning
-- requests, Pillow, python-dotenv - Utilities
-
-**Installation time:** 3-5 minutes depending on internet speed.
-
-#### 3.4 Configure Environment Variables
-
-**Create .env file:**
-```bash
-# Windows
-copy .env.example .env
-
-# macOS/Linux
-cp .env.example .env
+**Expected output:**
+```
+Successfully installed Flask-2.3.3 qdrant-client-1.7.0 ...
 ```
 
-**Or create manually:**
-```bash
-# Backend API Keys
-ASSEMBLYAI_API_KEY=your_assemblyai_key_here
-GROQ_API_KEY=your_groq_key_here
-GEMINI_API_KEY=your_gemini_key_here
+#### Verify Installation
 
-# Optional: Qdrant Cloud (leave empty for in-memory mode)
-QDRANT_URL=
-QDRANT_API_KEY=
+```bash
+# Test imports
+python -c "import flask; import qdrant_client; import sentence_transformers; print('✅ All imports successful')"
 ```
 
----
+### Step 3: Frontend Setup
 
-### Step 4: Frontend Setup
-
-#### 4.1 Navigate to Project Root
 ```bash
-# From backend directory
+# Navigate back to project root
 cd ..
 
-# Or directly
-cd /path/to/healthcare-memory-agent/project
-```
-
-#### 4.2 Install Node Dependencies
-```bash
+# Install Node.js dependencies
 npm install
+
+# This will install:
+# - React 18
+# - TypeScript
+# - Tailwind CSS
+# - React Router
+# - Recharts
+# - And more...
 ```
 
-**Expected packages:**
-- React 18 - UI framework
-- TypeScript - Type safety
-- Vite - Build tool
-- Tailwind CSS - Styling
-- React Router - Navigation
-- Recharts - Data visualization
-- FullCalendar - Appointment scheduling
-- TensorFlow.js - Client-side ML
+**Expected output:**
+```
+added 1234 packages in 45s
+```
 
-**Installation time:** 2-3 minutes.
+#### Verify Installation
+
+```bash
+# Check if node_modules exists
+ls node_modules
+
+# Test TypeScript compilation
+npm run build
+
+# Should complete without errors
+```
 
 ---
 
 ## 🔑 API Keys Configuration
 
-You need API keys for full functionality. Here's how to get them:
+### Backend Configuration (.env file)
 
-### 1. AssemblyAI (Speech-to-Text)
+**Location:** `project/backend/.env`
 
-**Purpose:** Voice input in 15+ languages  
-**Free Tier:** 5 hours/month
+Create the `.env` file in the `backend` directory:
 
-**Steps:**
-1. Go to [assemblyai.com](https://www.assemblyai.com/)
-2. Sign up for free account
-3. Navigate to Dashboard → API Keys
-4. Copy your API key
-5. Add to `backend/.env`:
-   ```
-   ASSEMBLYAI_API_KEY=abc123...
-   ```
+```bash
+cd backend
+```
 
-### 2. Groq (AI Chat)
+**On Windows (PowerShell):**
+```powershell
+New-Item -Path .env -ItemType File
+notepad .env
+```
 
-**Purpose:** Health assistant conversation  
-**Free Tier:** 14,400 requests/day (Llama 3 70B)
+**On macOS/Linux:**
+```bash
+touch .env
+nano .env  # or use your preferred editor
+```
 
-**Steps:**
-1. Go to [console.groq.com](https://console.groq.com/)
-2. Create account (GitHub login supported)
-3. Go to API Keys section
-4. Create new API key
-5. Add to `backend/.env`:
-   ```
-   GROQ_API_KEY=gsk_...
-   ```
+**Add the following content:**
 
-### 3. Google Gemini AI (Medical Analysis)
+```env
+# Backend API Keys
 
-**Purpose:** Skin condition analysis  
+# Groq API for conversational AI
+GROQ_API_KEY=gsk_your_groq_api_key_here
+
+# Google Gemini API for medical image analysis
+GEMINI_API_KEY=AIzaSy_your_gemini_api_key_here
+
+# AssemblyAI for speech-to-text
+ASSEMBLYAI_API_KEY=your_assemblyai_api_key_here
+
+# Optional: Qdrant Cloud (if using cloud instead of in-memory)
+# QDRANT_URL=https://your-cluster.qdrant.io
+# QDRANT_API_KEY=your_qdrant_api_key
+```
+
+**Save and close the file.**
+
+### Where to Get API Keys
+
+#### 1. Groq API Key (Required)
+
+1. Go to https://console.groq.com/
+2. Sign up or log in
+3. Navigate to "API Keys" section
+4. Click "Create API Key"
+5. Copy the key (starts with `gsk_`)
+6. Paste in `.env` file
+
+**Free Tier:** 30 requests/minute
+
+#### 2. Google Gemini API Key (Required)
+
+1. Go to https://makersuite.google.com/app/apikey
+2. Sign in with Google account
+3. Click "Create API Key"
+4. Select or create a Google Cloud project
+5. Copy the key (starts with `AIzaSy`)
+6. Paste in `.env` file
+
 **Free Tier:** 60 requests/minute
 
-**Steps:**
-1. Go to [ai.google.dev](https://ai.google.dev/)
-2. Click "Get API Key in Google AI Studio"
-3. Create new project or select existing
-4. Generate API key
-5. Add to `backend/.env`:
-   ```
-   GEMINI_API_KEY=AIza...
-   ```
+#### 3. AssemblyAI API Key (Required)
 
-### Testing API Keys
+1. Go to https://www.assemblyai.com/
+2. Sign up for free account
+3. Go to dashboard: https://www.assemblyai.com/app/
+4. Copy your API key
+5. Paste in `.env` file
 
-After adding keys, test them:
+**Free Tier:** 5 hours of transcription
 
-**Option 1: Run backend**
-```bash
-cd backend
-python app.py
+### Frontend Configuration (Optional)
+
+**Location:** `project/.env` or `project/.env.local`
+
+For local development, you can also add frontend environment variables:
+
+```env
+# Frontend Environment Variables (optional)
+
+# API base URL (default: http://localhost:5000)
+VITE_API_BASE_URL=http://localhost:5000
+
+# Optional: Frontend copies of API keys for direct API calls
+VITE_GEMINI_API_KEY=AIzaSy_your_gemini_api_key_here
+VITE_GROQ_API_KEY=gsk_your_groq_api_key_here
 ```
 
-Look for:
-```
-🔑 AssemblyAI API Key: ✅ Set
-🔑 Groq API Key: ✅ Set
-```
-
-**Option 2: Quick test script**
-```bash
-cd backend
-python -c "
-import os
-from dotenv import load_dotenv
-load_dotenv()
-print(f'AssemblyAI: {'✅' if os.getenv('ASSEMBLYAI_API_KEY') else '❌'}')
-print(f'Groq: {'✅' if os.getenv('GROQ_API_KEY') else '❌'}')
-print(f'Gemini: {'✅' if os.getenv('GEMINI_API_KEY') else '❌'}')
-"
-```
+**Note:** For production, use environment variables provided by your hosting platform.
 
 ---
 
-## ▶️ Running the Application
+## 🚀 Running the Application
 
-### Method 1: Two Terminals (Recommended)
+### Start Backend Server
 
-**Terminal 1 - Backend:**
+**Terminal 1:**
+
 ```bash
+# Navigate to backend directory
 cd project/backend
 
-# If using virtual environment
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # macOS/Linux
+# Make sure virtual environment is activated
+# You should see (.venv) in prompt
+# If not, activate it:
+..\.venv\Scripts\activate  # Windows
+source ../.venv/bin/activate  # macOS/Linux
 
-# Start server
+# Start Flask server
 python app.py
 ```
 
 **Expected output:**
 ```
 ✅ Skin analysis history module loaded
+✅ Gemini API configured successfully
+✅ Text-to-speech engine initialized
 ✅ Patient memory system loaded successfully
+✅ Vitals tracker loaded successfully
 ✅ Medical knowledge base loaded successfully
+✅ AI recommendation engine loaded successfully
+✅ Similar cases engine loaded successfully
+✅ Audio health history loaded successfully
 🔑 AssemblyAI API Key: ✅ Set
 🔑 Groq API Key: ✅ Set
 🚀 Starting CareMate Backend Server...
@@ -351,478 +363,433 @@ python app.py
  * Running on http://127.0.0.1:5000
 ```
 
-**Terminal 2 - Frontend:**
+**Keep this terminal running!**
+
+### Start Frontend Development Server
+
+**Terminal 2 (New terminal window):**
+
 ```bash
+# Navigate to project directory
 cd project
 
-# Start development server
+# Start Vite dev server
 npm run dev
 ```
 
 **Expected output:**
 ```
-VITE v5.x.x ready in 1234 ms
+  VITE v5.0.0  ready in 1234 ms
 
-➜  Local:   http://localhost:5173/
-➜  Network: http://192.168.x.x:5173/
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
 ```
 
-### Method 2: Using Start Script (Windows)
+**Keep this terminal running!**
 
-Create `start.bat` in project root:
-```batch
-@echo off
-start cmd /k "cd backend && .venv\Scripts\activate && python app.py"
-timeout /t 3
-start cmd /k "npm run dev"
-start http://localhost:5173
-```
+### Access the Application
 
-Double-click to run both servers.
+1. **Open your browser**
+2. **Navigate to:** http://localhost:5173
+3. **You should see the landing page**
 
-### Method 3: Using Start Script (macOS/Linux)
+#### Demo Credentials
 
-Create `start.sh` in project root:
-```bash
-#!/bin/bash
-cd backend && source .venv/bin/activate && python app.py &
-sleep 3
-npm run dev &
-sleep 2
-open http://localhost:5173  # macOS
-# xdg-open http://localhost:5173  # Linux
-```
+For testing without signup:
 
-Make executable and run:
-```bash
-chmod +x start.sh
-./start.sh
-```
+**Patient Account:**
+- Email: `patient@demo.com`
+- Password: `demo123`
+
+**Doctor Account:**
+- Email: `doctor@demo.com`
+- Password: `demo123`
 
 ---
 
-## ✅ Verifying Installation
+## 🧪 Testing
 
-### 1. Check Backend Health
+### Backend Tests
 
-Open browser: `http://localhost:5000/health`
+Run comprehensive test suites to verify everything works:
 
-**Expected response:**
-```json
-{
-  "status": "healthy",
-  "version": "1.0.0",
-  "modules": {
-    "patient_memory": "loaded",
-    "skin_analysis": "loaded",
-    "audio_analysis": "loaded",
-    "vitals_tracker": "loaded",
-    "medical_knowledge": "loaded"
-  },
-  "api_keys": {
-    "assemblyai": "configured",
-    "groq": "configured",
-    "gemini": "configured"
-  }
-}
-```
-
-### 2. Check Frontend
-
-Open browser: `http://localhost:5173`
-
-**Expected:** Landing page with "Healthcare Memory Agent" and "Get Started" button.
-
-### 3. Test Login
-
-**Demo Credentials:**
-- **Email:** `demo@patient.com`
-- **Password:** `demo123`
-- **Role:** Patient
-
-**Or:**
-- **Email:** `demo@doctor.com`
-- **Password:** `demo123`
-- **Role:** Healthcare Provider
-
-### 4. Test AI Chat
-
-1. Click "AI Health Assistant"
-2. Type: "Hello, I have a headache"
-3. Should get response in ~2-3 seconds
-
-### 5. Test Qdrant Integration
-
-**Check Qdrant Stats Panel:**
-1. Go to Dashboard
-2. Scroll down to "Qdrant Vector Database Stats"
-3. Should show:
-   - 6 collections
-   - Collection names and dimensions
-   - "In-memory mode" status
-
-**Check Console Logs:**
-1. Open browser DevTools (F12)
-2. Go to Console tab
-3. Send a chat message
-4. Look for:
-   ```
-   🔍 Searching patient memory...
-   ✅ Retrieved 3 conversations (similarity: 0.87, 0.82, 0.79)
-   💾 Stored conversation with ID: conv_abc123
-   ```
-
-### 6. Run Test Suite
-
-**Backend tests:**
 ```bash
-cd backend
+cd project/backend
 
-# Test multimodal embeddings
+# Test 1: Multimodal embeddings
 python test_multimodal.py
+# Expected: All 9 tests pass ✅
 
-# Test patient memory
-python test_patient_memory.py
-
-# Test evidence traceability
+# Test 2: Evidence traceability
 python test_evidence_traceability.py
+# Expected: All 6 tests pass ✅
+
+# Test 3: Patient memory
+python test_patient_memory.py
+# Expected: All tests pass ✅
+
+# Test 4: Skin analysis
+python test_skin_analysis_history.py
+# Expected: All tests pass ✅
+
+# Test 5: Similar cases
+python test_similar_cases.py
+# Expected: All tests pass ✅
+
+# Test 6: Vitals tracking
+python test_vitals_tracker.py
+# Expected: All tests pass ✅
 ```
 
-**Expected:** All tests pass with ✅ checkmarks.
+### Frontend Tests
+
+```bash
+cd project
+
+# Run TypeScript type checking
+npm run build
+# Should complete without errors
+
+# Check for linting issues
+npm run lint
+# Should show no errors
+```
+
+### Manual Testing Checklist
+
+Once the application is running, test these features:
+
+- [ ] **Landing Page** loads correctly
+- [ ] **Login** with demo credentials works
+- [ ] **Dashboard** displays with health vitals
+- [ ] **AI Health Assistant** responds to messages
+- [ ] **Voice Input** works (allow microphone access)
+- [ ] **Skin Analysis** accepts image upload
+- [ ] **Cough Analysis** records and analyzes audio
+- [ ] **Vitals Tracking** form submits and chart updates
+- [ ] **Appointments** calendar displays
+- [ ] **Messages** page loads
+- [ ] **Settings** page accessible
+- [ ] **Qdrant Stats Panel** shows on dashboard
 
 ---
 
 ## 🔧 Troubleshooting
 
-### Issue 1: Port Already in Use
+### Common Issues & Solutions
 
-**Error:** `Address already in use: 5000` or `5173`
+#### Issue 1: "ModuleNotFoundError: No module named 'X'"
 
-**Solution:**
-
-**Windows:**
-```bash
-# Find process using port
-netstat -ano | findstr :5000
-# Kill process (replace PID)
-taskkill /PID <PID> /F
-```
-
-**macOS/Linux:**
-```bash
-# Find and kill process
-lsof -ti:5000 | xargs kill -9
-```
-
-**Or use different ports:**
-
-Backend (`backend/app.py`):
-```python
-app.run(debug=True, host='0.0.0.0', port=5001)  # Changed to 5001
-```
-
-Frontend (`vite.config.ts`):
-```typescript
-export default defineConfig({
-  server: { port: 5174 }  // Changed to 5174
-})
-```
-
-### Issue 2: Module Not Found Errors
-
-**Error:** `ModuleNotFoundError: No module named 'flask'`
-
-**Cause:** Virtual environment not activated or packages not installed.
-
-**Solution:**
-```bash
-# Activate virtual environment
-cd backend
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # macOS/Linux
-
-# Reinstall packages
-pip install -r requirements.txt
-```
-
-### Issue 3: Python Version Too Old
-
-**Error:** `Python 3.11 is required`
-
-**Solution:** Install Python 3.11+ and create new virtual environment:
-
-```bash
-# Check current version
-python --version
-
-# Windows: Download from python.org
-# macOS: brew install python@3.11
-# Linux: sudo apt install python3.11
-
-# Create new venv with correct version
-python3.11 -m venv .venv
-```
-
-### Issue 4: Qdrant "No module named 'librosa'"
-
-**Error:** `⚠️ Multimodal embeddings not available: No module named 'librosa'`
+**Cause:** Python dependencies not installed or wrong environment
 
 **Solution:**
 ```bash
 # Make sure virtual environment is activated
-cd backend
-.venv\Scripts\activate  # Windows
+.\.venv\Scripts\activate  # Windows
 source .venv/bin/activate  # macOS/Linux
+
+# Reinstall dependencies
+cd backend
+pip install -r requirements.txt --force-reinstall
+```
+
+#### Issue 2: "AssertionError: Torch not compiled with CUDA"
+
+**Cause:** PyTorch CPU-only version installed (normal for most setups)
+
+**Solution:**
+This is a **warning, not an error**. The application works fine with CPU. To silence it:
+- Qdrant operations don't require GPU
+- CLIP/Wav2Vec2 models work on CPU (just slower)
+- For GPU support, install CUDA-enabled PyTorch from https://pytorch.org/
+
+#### Issue 3: "Port 5000 is already in use"
+
+**Cause:** Another application using port 5000
+
+**Solution:**
+```bash
+# Option 1: Kill process using port 5000
+# Windows:
+netstat -ano | findstr :5000
+taskkill /PID <PID> /F
+
+# macOS/Linux:
+lsof -ti:5000 | xargs kill -9
+
+# Option 2: Change port in backend/app.py
+# Edit: app.run(debug=True, port=5001)
+```
+
+#### Issue 4: "Groq API error: Invalid API key"
+
+**Cause:** API key not set correctly or expired
+
+**Solution:**
+```bash
+# Check .env file exists
+cd backend
+cat .env  # macOS/Linux
+type .env  # Windows
+
+# Verify API key format
+# Should start with: gsk_
+
+# Test API key manually
+python -c "import os; from dotenv import load_dotenv; load_dotenv(); print(os.getenv('GROQ_API_KEY'))"
+```
+
+#### Issue 5: "'query_points' object has no attribute"
+
+**Cause:** Qdrant client API mismatch (already fixed in latest code)
+
+**Solution:**
+Ensure you have the latest code where `query_points` is replaced with `search`:
+```bash
+git pull origin main
+```
+
+#### Issue 6: "No module named 'librosa'"
+
+**Cause:** librosa not installed in virtual environment
+
+**Solution:**
+```bash
+# Activate virtual environment first!
+.\.venv\Scripts\activate
 
 # Install librosa
 pip install librosa soundfile
 ```
 
-### Issue 5: CORS Errors in Browser
+#### Issue 7: Frontend shows "Network Error"
 
-**Error:** `Access to XMLHttpRequest blocked by CORS policy`
-
-**Cause:** Backend not running or wrong URL.
+**Cause:** Backend not running or wrong URL
 
 **Solution:**
-1. Ensure backend is running on `http://localhost:5000`
-2. Check `src/api/*.ts` files have correct `BACKEND_API_URL`
-3. Verify Flask-CORS is installed: `pip show flask-cors`
+1. Verify backend is running: http://localhost:5000/api/health
+2. Check browser console for CORS errors
+3. Ensure `.env` has correct `VITE_API_BASE_URL`
 
-### Issue 6: API Key Errors
+#### Issue 8: "npm install" fails
 
-**Error:** `Invalid Groq API key` or `401 Unauthorized`
-
-**Cause:** Invalid or expired API keys.
+**Cause:** npm cache corruption or version mismatch
 
 **Solution:**
-1. Regenerate API keys from provider dashboards
-2. Ensure no extra spaces in `.env` file
-3. Restart backend after updating `.env`
-4. Test keys with curl:
-
 ```bash
-# Test Groq API
-curl -X POST https://api.groq.com/openai/v1/chat/completions \
-  -H "Authorization: Bearer YOUR_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"model":"llama3-70b-8192","messages":[{"role":"user","content":"Hi"}]}'
+# Clear npm cache
+npm cache clean --force
+
+# Delete node_modules and package-lock.json
+rm -rf node_modules package-lock.json  # macOS/Linux
+Remove-Item -Recurse -Force node_modules, package-lock.json  # Windows
+
+# Reinstall
+npm install
 ```
 
-### Issue 7: TensorFlow.js Errors
+### Getting Help
 
-**Error:** `WebGL not supported` or `WASM backend failed`
+If you're still stuck:
 
-**Cause:** Browser doesn't support required APIs.
-
-**Solution:**
-1. Update browser to latest version
-2. Enable hardware acceleration in browser settings
-3. Try different browser (Chrome recommended)
-4. Disable browser extensions temporarily
-
-### Issue 8: Slow Response Times
-
-**Cause:** Large model downloads on first run.
-
-**Solution:**
-- First-time setup downloads CLIP, Wav2Vec2 models (~1-2 GB)
-- Subsequent runs are fast (models cached)
-- Wait 5-10 minutes for initial model downloads
-- Check terminal for download progress
+1. **Check GitHub Issues:** https://github.com/yourusername/healthcare-memory-agent/issues
+2. **Create New Issue:** Provide error logs, OS, Python/Node versions
+3. **Check Documentation:** `HACKATHON_SUBMISSION.md`, module READMEs
+4. **Review Console Logs:** Both browser and terminal for detailed errors
 
 ---
 
-## ☁️ Qdrant Cloud Setup (Optional)
+## 🌐 Deployment
 
-By default, the app uses **Qdrant in-memory mode** (data lost on restart). For production, use Qdrant Cloud.
+### Option 1: Vercel + Railway (Recommended)
 
-### Step 1: Create Qdrant Cloud Account
+**Frontend (Vercel):**
 
-1. Go to [cloud.qdrant.io](https://cloud.qdrant.io/)
-2. Sign up (free tier available)
-3. Create new cluster:
-   - Name: `healthcare-memory-agent`
-   - Region: Choose nearest
-   - Tier: Free (1 GB storage, 1M vectors)
+1. Push code to GitHub
+2. Go to https://vercel.com/
+3. Click "New Project" → Import from GitHub
+4. Select repository
+5. Set build command: `npm run build`
+6. Set output directory: `dist`
+7. Add environment variables:
+   - `VITE_API_BASE_URL`: Your backend URL
+8. Deploy!
 
-### Step 2: Get Connection Details
+**Backend (Railway):**
 
-1. Click on your cluster
-2. Copy **Cluster URL** (e.g., `https://xyz-abc.aws.qdrant.io:6333`)
-3. Go to **API Keys** → Generate new key
-4. Copy API key
+1. Go to https://railway.app/
+2. Click "New Project" → Deploy from GitHub
+3. Select repository
+4. Set start command: `python backend/app.py`
+5. Add environment variables:
+   - `GROQ_API_KEY`
+   - `GEMINI_API_KEY`
+   - `ASSEMBLYAI_API_KEY`
+6. Deploy!
+7. Copy the generated URL and update Vercel's `VITE_API_BASE_URL`
 
-### Step 3: Update Configuration
+### Option 2: Netlify + Heroku
 
-Edit `backend/.env`:
+**Frontend (Netlify):**
+
 ```bash
-QDRANT_URL=https://xyz-abc.aws.qdrant.io:6333
-QDRANT_API_KEY=your_api_key_here
+# Build production bundle
+npm run build
+
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Deploy
+netlify deploy --prod
 ```
 
-### Step 4: Restart Backend
+**Backend (Heroku):**
 
 ```bash
-cd backend
-python app.py
+# Install Heroku CLI
+# Then:
+heroku login
+heroku create your-app-name
+git push heroku main
+heroku config:set GROQ_API_KEY=your_key
+heroku config:set GEMINI_API_KEY=your_key
+heroku config:set ASSEMBLYAI_API_KEY=your_key
 ```
 
-Look for:
-```
-🔗 Connecting to Qdrant server at https://xyz-abc.aws...
-✅ Qdrant connection successful
+### Option 3: Docker Deployment
+
+**Create `Dockerfile` in backend:**
+
+```dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
 ```
 
-### Step 5: Verify Collections
+**Build and run:**
 
-Visit: `http://localhost:5000/api/qdrant/collections`
+```bash
+# Build image
+docker build -t healthcare-backend .
 
-Should show:
-```json
-{
-  "collections": [
-    "patient_conversations",
-    "skin_analysis_history",
-    "audio_health_history",
-    "similar_cases",
-    "medical_knowledge",
-    "vitals_tracking"
-  ]
-}
+# Run container
+docker run -p 5000:5000 \
+  -e GROQ_API_KEY=your_key \
+  -e GEMINI_API_KEY=your_key \
+  -e ASSEMBLYAI_API_KEY=your_key \
+  healthcare-backend
 ```
+
+### Qdrant Cloud (Optional)
+
+For production-scale vector database:
+
+1. Sign up: https://cloud.qdrant.io/
+2. Create cluster
+3. Get cluster URL and API key
+4. Update backend `.env`:
+   ```env
+   QDRANT_URL=https://your-cluster.qdrant.io
+   QDRANT_API_KEY=your_qdrant_api_key
+   ```
+
+---
+
+## 📊 Performance Optimization
+
+### Production Checklist
+
+- [ ] **Environment variables** set correctly
+- [ ] **API rate limits** understood and monitored
+- [ ] **CORS** configured for your domain
+- [ ] **HTTPS** enabled (required for camera/microphone)
+- [ ] **Qdrant Cloud** for persistent vector storage
+- [ ] **CDN** for static assets (Vercel/Netlify handles this)
+- [ ] **Error monitoring** (Sentry, LogRocket)
+- [ ] **Analytics** (Google Analytics, Mixpanel)
+
+### Recommended Resources
+
+**For Development:**
+- Backend: 512MB RAM, 1 vCPU
+- Frontend: Static hosting
+- Qdrant: In-memory mode
+
+**For Production:**
+- Backend: 2GB RAM, 2 vCPU
+- Frontend: CDN (Vercel/Netlify)
+- Qdrant: Cloud cluster (1GB+ RAM)
+
+---
+
+## 🎉 Success Checklist
+
+You're all set if you can:
+
+- [x] Backend server running on http://localhost:5000
+- [x] Frontend running on http://localhost:5173
+- [x] Login with demo credentials
+- [x] See dashboard with Qdrant Stats Panel
+- [x] Send message in AI Health Assistant
+- [x] Upload image for skin analysis
+- [x] Record audio for cough analysis
+- [x] All test suites pass
+- [x] No errors in browser console
+- [x] No errors in terminal logs
+
+**Congratulations! 🎊 You're ready to explore the Healthcare Memory Agent!**
 
 ---
 
 ## 📚 Next Steps
 
-### 1. Explore Features
-
-**Recommended order:**
-1. ✅ Dashboard - See health metrics and Qdrant stats
-2. ✅ AI Health Assistant - Test conversational memory
-3. ✅ AI Skin Analysis - Upload image, see multimodal embeddings
-4. ✅ Cough Analysis - Record audio, test acoustic embeddings
-5. ✅ Vitals Tracking - Log health data
-6. ✅ EcoFit Game - Try AR fitness
-
-### 2. Review Documentation
-
-- **HACKATHON_SUBMISSION.md** - Complete feature overview
-- **COMPLETE_DEMO_SCRIPT_WITH_QDRANT.md** - Detailed walkthrough
-- **WHERE_TO_SEE_QDRANT_UI.md** - Qdrant visibility guide
-- **Backend README.md** - API documentation
-
-### 3. Development
-
-**Enable debug mode:**
-
-Frontend (`src/config/apiKeys.ts`):
-```typescript
-export const DEBUG_MODE = true;
-```
-
-Backend (already enabled in development):
-```python
-app.run(debug=True)  # Auto-reload on code changes
-```
-
-**Recommended VS Code Extensions:**
-- Python
-- Pylance
-- ESLint
-- Prettier
-- Tailwind CSS IntelliSense
-
-### 4. Testing
-
-**Run comprehensive tests:**
-```bash
-cd backend
-
-# All tests
-python -m pytest test_*.py -v
-
-# Specific test
-python test_multimodal.py
-python test_evidence_traceability.py
-```
-
-### 5. Production Deployment
-
-**Frontend (Vercel/Netlify):**
-```bash
-npm run build
-# Deploy 'dist' folder
-```
-
-**Backend (Railway/Heroku):**
-```bash
-# Ensure requirements.txt is up to date
-pip freeze > requirements.txt
-
-# Create Procfile
-echo "web: python app.py" > Procfile
-```
+1. **Explore Features:** Try all modules (skin analysis, audio health, vitals tracking)
+2. **Read Documentation:** Check `HACKATHON_SUBMISSION.md` for detailed feature overview
+3. **Review Video Script:** See `COMPLETE_DEMO_SCRIPT_WITH_QDRANT.md` for guided tour
+4. **Check Code:** Explore backend modules in `backend/*.py`
+5. **Customize:** Modify UI, add features, enhance AI prompts
+6. **Deploy:** Follow deployment guide above
+7. **Star on GitHub:** ⭐ https://github.com/yourusername/healthcare-memory-agent
 
 ---
 
-## 🎓 Learning Resources
+## 🤝 Contributing
 
-### Qdrant Documentation
-- [Official Docs](https://qdrant.tech/documentation/)
-- [Named Vectors Guide](https://qdrant.tech/documentation/concepts/vectors/#named-vectors)
-- [Python Client](https://github.com/qdrant/qdrant-client)
+We welcome contributions! To contribute:
 
-### AI Models Used
-- **CLIP**: [OpenAI CLIP](https://github.com/openai/CLIP)
-- **Wav2Vec2**: [Hugging Face](https://huggingface.co/facebook/wav2vec2-base)
-- **Sentence Transformers**: [SBERT](https://www.sbert.net/)
-
-### APIs
-- [Groq API Docs](https://console.groq.com/docs)
-- [AssemblyAI Docs](https://www.assemblyai.com/docs)
-- [Gemini AI Docs](https://ai.google.dev/docs)
-
----
-
-## 💬 Support
-
-### Get Help
-
-**Issues or Questions:**
-- GitHub Issues: [github.com/yourrepo/issues](https://github.com/yourrepo/issues)
-- Email: support@yourdomain.com
-
-**Common Questions:**
-- "How do I reset the database?" → Delete Qdrant data folder and restart
-- "Can I use different AI models?" → Yes, modify `backend/multimodal_embeddings.py`
-- "Is this HIPAA compliant?" → Evidence traceability helps, but consult legal team
-- "How do I add more languages?" → Update `language_names` dict in backend files
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open Pull Request
 
 ---
 
 ## 📄 License
 
-This project is open-source under the MIT License. See LICENSE file for details.
+This project is licensed under the MIT License - see LICENSE file for details.
 
 ---
 
-## ✨ You're All Set!
+## 🆘 Support
 
-Your Healthcare Memory Agent is now ready to use. Key URLs:
-
-- **Frontend:** http://localhost:5173
-- **Backend API:** http://localhost:5000
-- **Health Check:** http://localhost:5000/health
-- **API Docs:** http://localhost:5000/api/docs (if enabled)
-
-**Demo Credentials:**
-- Patient: `demo@patient.com` / `demo123`
-- Doctor: `demo@doctor.com` / `demo123`
-
-Enjoy building the future of healthcare AI! 🚀🏥
+- **Documentation:** See `/project/backend/README.md` and module-specific READMEs
+- **GitHub Issues:** https://github.com/yourusername/healthcare-memory-agent/issues
+- **Email:** support@yourproject.com
+- **Discord:** [Your Discord invite link]
 
 ---
 
-**Questions?** Check the troubleshooting section or open an issue on GitHub.
+**Built with ❤️ for the Qdrant Hackathon**
+
+*Showcasing the power of multimodal vector search in healthcare AI*
