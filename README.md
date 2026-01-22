@@ -22,7 +22,7 @@
 
 Caremate: Healthcare Memory Agent is a revolutionary AI-powered chronic care management platform that combines **Qdrant vector database** with cutting-edge multimodal artificial intelligence. The platform enables semantic memory for patient conversations, multimodal health analysis (images, audio), evidence-based clinical decision support, and complete audit trail traceability for healthcare compliance.
 <p align="center">
-  <img src="https://github.com/Shine-5705/healthcare-memory-agent/blob/main/asset/WebUI.png" alt="CareMate UI Screenshot" width="700"/>
+  <img src="https://github.com/Shine-5705/Healthcare_memory_agent/blob/main/asset/WebUI.png" alt="CareMate UI Screenshot" width="700"/>
 </p>
 
 ### 🎯 Key Innovations
