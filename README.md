@@ -12,7 +12,7 @@
 
 **Next-generation chronic care platform powered by Qdrant vector database and multimodal AI**
 
-[Live Demo](https://caremate0507.netlify.app/) • [Documentation](./project/SETUP_GUIDE.md) • [Video Demo](https://www.youtube.com/watch?v=VyZv46rnjzA) • [Report Bug](https://github.com/Shine-5705/healthcare-memory-agent/issues)
+[Live Demo](https://caremate0507.netlify.app/) • [Documentation](./project/SETUP_GUIDE.md) • [Video Demo](https://www.youtube.com/watch?v=VyZv46rnjzA) • [Architecture](./project/ARCHITECTURE.md) • [Report Bug](https://github.com/Shine-5705/healthcare-memory-agent/issues)
 
 </div>
 
@@ -118,7 +118,7 @@ Flask 2.3.3 + Python 3.11
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/healthcare-memory-agent.git
+git clone https://github.com/Shine-5705/healthcare-memory-agent.git
 cd healthcare-memory-agent/project
 
 # 2. Create Python virtual environment
@@ -331,6 +331,7 @@ python test_vitals_tracker.py
 
 | Document | Description |
 |----------|-------------|
+| [ARCHITECTURE.md](./project/ARCHITECTURE.md) | **System architecture with diagrams** |
 | [SETUP_GUIDE.md](./project/SETUP_GUIDE.md) | Complete installation and setup instructions |
 | [HACKATHON_SUBMISSION.md](./project/HACKATHON_SUBMISSION.md) | Comprehensive feature overview (10 pages) |
 | [COMPLETE_DEMO_SCRIPT_WITH_QDRANT.md](./project/COMPLETE_DEMO_SCRIPT_WITH_QDRANT.md) | Video demo script with all features |
@@ -488,10 +489,10 @@ in the Software without restriction...
 
 ## 📞 Contact & Support
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/yourusername/healthcare-memory-agent/issues)
-- **Email**: healthcare-memory-agent@example.com
+- **GitHub**: [@Shine-5705](https://github.com/Shine-5705)
+- **Issues**: [Report bugs or request features](https://github.com/Shine-5705/healthcare-memory-agent/issues)
+- **Email**: guptahisn5002@gmail.com
 - **Documentation**: [Full docs](./project/SETUP_GUIDE.md)
-- **Discord**: [Join our community](https://discord.gg/your-invite)
 
 ---
 
@@ -499,7 +500,7 @@ in the Software without restriction...
 
 If you find this project useful, please consider giving it a ⭐!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/healthcare-memory-agent&type=Date)](https://star-history.com/#yourusername/healthcare-memory-agent&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Shine-5705/healthcare-memory-agent&type=Date)](https://star-history.com/#Shine-5705/healthcare-memory-agent&Date)
 
 ---
 

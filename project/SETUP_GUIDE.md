@@ -1,4 +1,4 @@
-# 🚀 Healthcare Memory Agent - Complete Setup Guide
+# 🚀 Caremate: Healthcare Memory Agent - Complete Setup Guide
 
 **Get up and running in under 10 minutes!**
 
