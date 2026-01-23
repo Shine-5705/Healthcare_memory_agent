@@ -1,4 +1,4 @@
-# 🏥 Healthcare Memory Agent
+# 🏥 CAREMATE: Healthcare Memory Agent
 
 <div align="center">
 
